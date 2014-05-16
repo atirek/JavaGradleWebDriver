@@ -1,6 +1,5 @@
 package flow;
 
-import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.SearchResultPage;
 
@@ -17,7 +16,7 @@ public class SearchFlow {
         searchResultPage = new SearchResultPage();
     }
 
-    public void searchOneWayJourney(String origin, String dest, String dateOfTravel){
+    public SearchFlow searchOneWayJourney(String origin, String dest, String dateOfTravel){
         homePage.selectOneWayRadio();
         homePage.closeDialogBox();
         homePage.selectOrigin(origin);
@@ -25,18 +24,21 @@ public class SearchFlow {
         homePage.selectNumberOfPassenger();
         homePage.enterDepartureDate(dateOfTravel);
         homePage.clickOnSubmit();
+        return new SearchFlow();
     }
 
 
 
-    public void selectJourneyAndContinue() {
+    public BookingFlow selectJourneyAndContinue() {
         searchResultPage.selectFirstAvailableTicket();
         searchResultPage.acceptTermsAndConditions();
         searchResultPage.clickOnContinue();
+        return new BookingFlow();
     }
 
-    public void verifySearchResult() {
+    public SearchFlow verifySearchResult() {
         assertTrue("Search result table exist", searchResultPage.isSearchResultContainerDisplayed());
+        return new SearchFlow();
     }
 
 

@@ -16,10 +16,8 @@ public class MyIndigoTest extends BaseTest {
 
     @Test
     public void testOneWayFlightSearch() throws InterruptedException {
-        new SearchFlow().searchOneWayJourney("Pune", "Delhi", "14 Jun 2014");
-        new SearchFlow().verifySearchResult();
-        new SearchFlow().selectJourneyAndContinue();
-
+        new SearchFlow().searchOneWayJourney("Pune", "Delhi", "14 Jun 2014").verifySearchResult().selectJourneyAndContinue()
+        .enterUserDetails();
     }
 
 
